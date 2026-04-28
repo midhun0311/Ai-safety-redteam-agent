@@ -1,7 +1,8 @@
 const API_URL = (() => {
     const hostname = window.location.hostname;
-    const isLocalhost = hostname === "localhost" || hostname === "127.0.0.1";
-    if (isLocalhost) {
+    const isLocalhost = hostname === "localhost" || hostname === "127.0.0.1" || hostname === "";
+    const isFileProtocol = window.location.protocol === "file:";
+    if (isLocalhost || isFileProtocol) {
         return "http://127.0.0.1:8000/test";
     }
     return "/api/test";

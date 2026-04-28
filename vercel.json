@@ -6,18 +6,22 @@
       "use": "@vercel/python"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/",
-      "destination": "/frontend/index.html"
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
     },
     {
-      "source": "/app.js",
-      "destination": "/frontend/app.js"
+      "src": "/app.js",
+      "dest": "/frontend/app.js"
     },
     {
-      "source": "/style.css",
-      "destination": "/frontend/style.css"
+      "src": "/style.css",
+      "dest": "/frontend/style.css"
+    },
+    {
+      "src": "/",
+      "dest": "/frontend/index.html"
     }
   ]
 }

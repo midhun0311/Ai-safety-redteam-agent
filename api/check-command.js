@@ -1,7 +1,7 @@
 // Vercel Serverless Function — api/check-command.js
 // Uses Gemini 2.0 Flash via the correct REST endpoint
 
-const MODEL = 'gemini-2.0-flash';
+const MODEL = 'gemini-2.5-flash';
 const GEMINI_API_BASE = 'https://generativelanguage.googleapis.com/v1beta/models';
 
 /**

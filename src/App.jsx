@@ -79,7 +79,7 @@ function App() {
       <header className="app-header">
         <div className="badge">
           <span className="dot" />
-          Powered by Gemini 2.0 Flash
+          Powered by Gemini 2.5 Flash
         </div>
         <h1>AI Safety Redteam Agent</h1>
         <p>Evaluate any command or prompt for security risks using Google's Gemini AI model.</p>

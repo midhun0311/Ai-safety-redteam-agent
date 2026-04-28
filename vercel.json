@@ -1,8 +1,7 @@
 {
-  "version": 2,
-  "functions": {
-    "api/*.py": {
-      "runtime": "python3.11"
-    }
-  }
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
 }

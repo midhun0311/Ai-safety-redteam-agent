@@ -1,27 +1,52 @@
-# Ai-safety-redteam-agent
+# AI Safety Redteam Agent
+
+This repository is now configured as a React frontend with a Vercel-compatible Node backend. The backend uses Gemini API credentials from `.env` to evaluate command safety.
 
 ## Local setup
 
-1. Create or activate the Python virtual environment:
-   - `python -m venv .venv`
-   - `.\.venv\Scripts\Activate.ps1` (PowerShell) or `.\.venv\Scripts\activate.bat` (cmd)
-2. Install dependencies:
-   - `python -m pip install -r requirements.txt`
-3. Run the backend locally:
-   - `python -m uvicorn Backend.main:app --host 0.0.0.0 --port 8000`
-4. Open the frontend:
-   - Serve the `public/` folder from a static server, for example:
-     - `python -m http.server 8080 --directory public`
-   - Then visit `http://127.0.0.1:8080`
+1. Install dependencies:
+   - `npm install`
+2. Create a `.env` file from the example:
+   - `copy .env.example .env`
+   - Set `GEMINI_API_KEY` to your Gemini API key.
+3. Run the React development server:
+   - `npm run dev`
+4. For local full-stack testing with Vercel CLI:
+   - Install Vercel CLI if you do not have it: `npm install -g vercel`
+   - Run: `vercel dev`
+
+## Project structure
+
+- `index.html` — Vite entry page
+- `src/` — React app source
+- `api/check-command.js` — Node serverless function for Gemini checks
+- `vercel.json` — Vercel build routing configuration
+- `.env.example` — example environment variables
+
+## How it works
+
+- Frontend sends `POST /api/check-command` with `{ text }`
+- Backend calls Gemini using `GEMINI_API_KEY`
+- Backend returns `{ risk, answer }`
+- Frontend displays risk, analysis, and dashboard stats
 
 ## Vercel deployment
 
-- Static frontend lives in `public/`
-- Python serverless endpoint is `api/test.py`
-- Vercel automatically serves `public/index.html` at `/`
-- The frontend calls the backend at `/api/test`
+This repo is ready to deploy to Vercel using the existing `vercel.json` configuration.
+
+- Static build is created by Vite
+- Backend is served through `/api/check-command`
+
+## Environment variables
+
+Use `.env` for local development and Vercel Environment Variables in production.
+
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_API_URL=https://gemini.googleapis.com/v1/models/gemini-1.5:generate
+```
 
 ## Notes
 
-- Keep `frontend/` as source copy if desired, but the deployable app is in `public/`
-- The backend check endpoint is `POST /api/test`
+- The old Python backend and frontend folders remain in the repository for history but are no longer the active deployment path.
+- The new stack is React + Node serverless on Vercel.

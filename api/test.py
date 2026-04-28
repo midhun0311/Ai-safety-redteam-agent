@@ -1,18 +1,17 @@
-def handler(request, response):
+def handler(request):
     if request.method != "POST":
-        response.status_code = 405
-        response.headers["Content-Type"] = "application/json"
-        response.body = {"error": "Method not allowed. Use POST."}
-        return response
+        return {
+            "error": "Method not allowed. Use POST."
+        }, 405
 
     data = request.json() or {}
     prompt_text = data.get("text", "")
 
-    response.status_code = 200
-    response.headers["Content-Type"] = "application/json"
-    response.body = {
+    return {
         "prompt": prompt_text,
         "response": "Test response working",
         "risk": "LOW"
     }
-    return response
+
+app = handler
+application = handler

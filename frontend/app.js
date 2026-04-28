@@ -1,4 +1,11 @@
-const API_URL = "/api/test";
+const API_URL = (() => {
+    const hostname = window.location.hostname;
+    const isLocalhost = hostname === "localhost" || hostname === "127.0.0.1";
+    if (isLocalhost) {
+        return "http://127.0.0.1:8000/test";
+    }
+    return "/api/test";
+})();
 
 async function runTest() {
     const prompt = document.getElementById("prompt").value;

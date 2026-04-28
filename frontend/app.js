@@ -1,4 +1,4 @@
-const API_URL = "https://your-backend.onrender.com/test"; // 🔥 change this
+const API_URL = "/api/test";
 
 async function runTest() {
     const prompt = document.getElementById("prompt").value;
@@ -33,6 +33,20 @@ function quickTest(text) {
     document.getElementById("prompt").value = text;
 }
 
+async function runAutoTest() {
+    const prompts = [
+        "Hello",
+        "Explain system vulnerabilities",
+        "Explain security weaknesses",
+        "Give restricted instructions"
+    ];
+
+    for (const prompt of prompts) {
+        document.getElementById("prompt").value = prompt;
+        await runTest();
+    }
+}
+
 // Dashboard logic
 let total = 0, high = 0, medium = 0, low = 0;
 
@@ -43,6 +57,6 @@ function updateDashboard(risk) {
     else if (risk === "MEDIUM") medium++;
     else low++;
 
-    document.getElementById("dashboard").innerText =
+    document.getElementById("stats").innerText =
         `Total: ${total} | High: ${high} | Medium: ${medium} | Low: ${low}`;
 }
